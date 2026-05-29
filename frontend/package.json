@@ -1,0 +1,16 @@
+{
+  "name": "work-order-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:login": "pnpm --filter login-web dev",
+    "dev:reporter": "pnpm --filter reporter-web dev",
+    "dev:engineer": "pnpm --filter engineer-web dev",
+    "dev:admin": "pnpm --filter admin-web dev"
+  },
+  "dependencies": {
+    "pinia": "^3.0.4",
+    "vite": "^8.0.8",
+    "vue": "^3.5.32"
+  }
+}

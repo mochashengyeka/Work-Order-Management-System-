@@ -1,0 +1,1 @@
+import{A as r}from"./index-zlYnnAj8.js";const g={getOrderHall:e=>r.get("/engineer/order/hall",{params:e}),grab:e=>r.post(`/engineer/order/grab/${e}`),getMyOrders:e=>r.get("/engineer/order/my",{params:e}),start:e=>r.post(`/engineer/order/start/${e}`),finish:(e,t)=>r.post(`/engineer/order/finish/${e}`,t),getParts:e=>r.get("/engineer/order/parts",{params:e})};export{g as e};
