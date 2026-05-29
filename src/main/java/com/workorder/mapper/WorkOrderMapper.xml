@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workorder.mapper.WorkOrderMapper">
+
+    <!-- 分页查询工单（关联用户表获取姓名） -->
+    <select id="selectOrderPage" resultType="com.workorder.vo.OrderVO">
+        SELECT
+        wo.*,
+        u1.real_name as reporterName,
+        u2.real_name as engineerName
+        FROM work_order wo
+        LEFT JOIN sys_user u1 ON wo.reporter_id = u1.id
+        LEFT JOIN sys_user u2 ON wo.engineer_id = u2.id
+        <where>
+            <if test="query.status != null">
+                AND wo.status = #{query.status}
+            </if>
+            <if test="query.reporterId != null">
+                AND wo.reporter_id = #{query.reporterId}
+            </if>
+            <if test="query.engineerId != null">
+                AND wo.engineer_id = #{query.engineerId}
+            </if>
+            <if test="query.keyword != null and query.keyword != ''">
+                AND (wo.title LIKE CONCAT('%', #{query.keyword}, '%')
+                OR wo.order_no LIKE CONCAT('%', #{query.keyword}, '%'))
+            </if>
+        </where>
+        ORDER BY wo.create_time DESC
+    </select>
+
+</mapper>
